@@ -31,24 +31,9 @@ class OnlineShopperTable(models.Model):
     Region = models.IntegerField(validators=[MaxValueValidator(0), MinValueValidator(9)])
     TrafficType = models.IntegerField(validators=[MaxValueValidator(0), MinValueValidator(20)])
     Visitor_type = models.CharField(choices=Visitor_type_list, max_length=50)
-    Weekend = models.BooleanField()
-    Revenue = models.BooleanField()
+    Weekend = models.CharField(choices=Bool_Values, max_length=50)
+    Revenue = models.CharField(choices=Bool_Values, max_length=50)
 
 
-# Overiding the Boolean Value
-def to_python(self, value):
-    if self.null and value in self.empty_values:
-        return None
-    if value in (True, False):
-        # 1/0 are equal to True/False. bool() converts former to latter.
-        return bool(value)
-    if value in ('t', 'True', '1', 'TRUE'):
-        return True
-    if value in ('f', 'False', '0', 'FALSE'):
-        return False
-    raise exceptions.ValidationError(
-        self.error_messages['invalid_nullable' if self.null else 'invalid'],
-        code='invalid',
-        params={'value': value},
-    )
+
 
