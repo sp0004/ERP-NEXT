@@ -1,16 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-  {% for pet in pets %}
+  {% for Rev in Revenues %}
     <div class="petname">
-      <a href="{% url 'pet_detail' pet.id %}">
-        <h3>{{ pet.name|capfirst }}</h3>
-      </a>
-      <p>{{ pet.species }}</p>
-      {% if pet.breed %}
-        <p>Breed: {{ pet.breed }}</p>
-      {% endif %}
-      <p>{{ pet.description }}</p>
+
+        <h3>{{ Rev.Revenue }}</h3>
+
     </div>
   {% endfor %}
 </div>
