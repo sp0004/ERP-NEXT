@@ -1,4 +1,4 @@
-from ErpDev.models import OnlineShopperTable
+from .models import OnlineShopperTable
 
 class QueryDataForVisual:
     def QueryRevenue(self):

@@ -1,65 +1,46 @@
 {% load static %}
-
 <html lang="en-US">
     <head>
         <meta charset="UTF-8">
         <title>Home - ERP NEXT APPlICATION</title>
         <link rel="stylesheet" id="ample-style-css" href="{% static 'style.css' %}" type="text/css" media="all">
+        <link rel="stylesheet" id="ample-style-css-1" href="{% static 'jquery-ui.css' %}" type="text/css" media="all">
+        <link rel="stylesheet" id="ample-style-css-2" href="{% static 'jquery-ui.min.css' %}" type="text/css" media="all">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script href="{% static jquery.ui.js %}"></script>
+        <script href="{% static jquery.ui.theme.js%}"></script>
+        <script href="{% static tabs.js%}"></script>
+
     </head>
     <body class="wide">
-        <div id="page" class="hfeed site">
-            <header>
-                <div class="header">
-                    <div class="main-head-wrap inner-wrap clearfix">
-                        <div id="header-logo-image">
-                            <a href="/">
-                                <img src="{% static 'images/Erp-logo.png' %}" alt="Home- ERP Application">
-                            </a>
-                        </div>
-                        <div id="header-text" class="">
+        <header>
+            <div class="header">
+                <div class="main-head-wrap inner-wrap clearfix">
+                    <div id="header-logo-image">
+                        <a href="/">
+                                <img src="{% static 'images/Erp-logo.png' %}" width="50" height="42" alt="Home- ERP Application">
+                        </a>
+                    </div>
+                     <div id="header-text" class="">
                             <h1 id="site-title">
                                 <a href="/" title="Wisdom Pet Medicine" rel="home">ERP - Next Application</a>
                             </h1>
-                            <p>A all in one app to manage all your stuff </p>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <div class="main-wrapper">
-                <div class="single-page clearfix">
-                    <div class="inner-wrap">
-                        <p>Wisdom Pet Medicine strives to blend the best in traditional and alternative medicine in the diagnosis and treatment of health conditions in companion animals, including dogs, cats, birds, reptiles, rodents, and fish. We apply the latest healthcare technology, along with the wisdom garnered in the centuries old tradition of veterinary medicine, to find the safest and most effective treatments and cures, while maintaining a caring relationship with our patients and their guardians.</p>
-                        <hr>
-                        <div>
-                        {% block content %}
-                        {% endblock %}
-                        </div>
-                    </div>
+                            <p> all in one app to manage all your stuff </p>
+                     </div>
                 </div>
             </div>
-            <footer id="colophon">
-                <div class="inner-wrap">
-
-                </div>
-            </footer>
+        </header>
+       <div class="tab">
+          <ul id = "tabs">
+            <li><a href="#fragment1">One</a></li>
+            <li><a href="#fragment2">Two</a></li>
+            <li><a href="#fragment3">Three</a></li>
+          </ul>
         </div>
-        {% block content %}
-        <div>
-          {% for pet in Revenues %}
-            <div class="petname">
-              <a href="{% url 'pet_detail' pet.id %}">
-                <h3>{{ pet.name|capfirst }}</h3>
-              </a>
-              <p>{{ pet.species }}</p>
-              {% if pet.breed %}
-                <p>Breed: {{ pet.breed }}</p>
-              {% endif %}
-              <p>{{ pet.description }}</p>
-            </div>
-          {% endfor %}
-        </div>
-        {% endblock %}
+      <div>
 
-        <script src="{% static 'main.js' %}"></script>
+      </div>
     </body>
+
+
 </html>
