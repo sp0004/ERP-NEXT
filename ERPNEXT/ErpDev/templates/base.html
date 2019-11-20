@@ -3,14 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>Home - ERP NEXT APPlICATION</title>
-        <link rel="stylesheet" id="ample-style-css" href="{% static 'style.css' %}" type="text/css" media="all">
-        <link rel="stylesheet" id="ample-style-css-1" href="{% static 'jquery-ui.css' %}" type="text/css" media="all">
-        <link rel="stylesheet" id="ample-style-css-2" href="{% static 'jquery-ui.min.css' %}" type="text/css" media="all">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script href="{% static jquery.ui.js %}"></script>
-        <script href="{% static jquery.ui.theme.js%}"></script>
-        <script href="{% static tabs.js%}"></script>
-
+        <link rel="stylesheet" id="ample-style-css" href="{% static 'style.css' %}" type="text/css" >
+        <link rel="stylesheet" id="ample-style-css-1" href="{% static 'jquery-ui.css' %}" type="text/css" >
+        <script src="{% static 'jquery.js' %}"></script>
+        <script src="{% static 'jquery-ui.js' %}"></script>
+        <script src="{% static 'tabs.js' %}"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
     </head>
     <body class="wide">
         <header>
@@ -30,14 +28,10 @@
                 </div>
             </div>
         </header>
-       <div class="tab">
-          <ul id = "tabs">
-            <li><a href="#fragment1">One</a></li>
-            <li><a href="#fragment2">Two</a></li>
-            <li><a href="#fragment3">Three</a></li>
-          </ul>
-        </div>
-      <div>
+      <button class="tablink" id="openPage('News', this, 'green')">Dashboard</button>
+      <button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">Sales</button>
+      <button class="tablink" onclick="openPage('Contact', this, 'blue')">ToDo List</button>
+      <button class="tablink" onclick="openPage('About', this, 'orange')">Calender</button>
 
       </div>
     </body>

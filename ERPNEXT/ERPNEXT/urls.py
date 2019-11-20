@@ -8,4 +8,5 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$',views.Home,name='Home'),
+    url(r'^$', views.index, name="TodoList")
 ]

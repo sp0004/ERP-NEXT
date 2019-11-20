@@ -3,10 +3,9 @@ from dataclasses import Field
 from django.core import exceptions
 from django.db import models
 from django.forms import forms
-
+from django.utils import timezone
 from .validation import validate_range
 from django.core.validators import MaxValueValidator, MinValueValidator
-
 
 
 # Creating the necessary columns for inserting the database files
@@ -35,5 +34,15 @@ class OnlineShopperTable(models.Model):
     Revenue = models.CharField(choices=Bool_Values, max_length=50)
 
 
+class ToDoList(models.Model):
+    title = models.CharField(max_length=250)
+    content = models.TextField(blank=True)
+    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
+    due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
 
 
+    class Meta:
+        ordering = ["-created"]
+
+    def __str__(self):
+        return self.title
