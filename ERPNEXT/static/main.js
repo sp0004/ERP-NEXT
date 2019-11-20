@@ -1,4 +1,4 @@
-function openPage(pageName, elmnt, color) {
+function openPage(pageName, elmnt) {
   // Hide all elements with class="tabcontent" by default */
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -13,9 +13,31 @@ function openPage(pageName, elmnt, color) {
   }
 
   // Show the specific tab content
-  document.getElementById(pageName).style.display = "block";
+  //document.getElementById(pageName).style.display = "block";
+  if (pageName == 'Dash')
+  {
+    var ajaxDiv = "Dash";
+    $.ajax({
+    url:"http://localhost:8000/Home/",
+    datatype:"html",
+    type: "POST",
+    success: function(data) {
+        ajaxDiv.replaceWith(ajaxDiv.html(data));
+    }})
+  }
+  else if(pageName == 'ToDo')
+  {
+  var ajaxDiv = "ToDo";
+      $.ajax({
+    url:"http://localhost:8000/ToDo/",
+    datatype:"html",
+    type: "POST",
+    success: function(data) {
+        ajaxDiv.replaceWith(ajaxDiv.html(data));
+    }})
+  }
 
-}
+ }
 
 // Get the element with id="defaultOpen" and click on it
 //xdocument.getElementById("defaultOpen").click();

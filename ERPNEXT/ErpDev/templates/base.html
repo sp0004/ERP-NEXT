@@ -7,7 +7,7 @@
         <link rel="stylesheet" id="ample-style-css-1" href="{% static 'jquery-ui.css' %}" type="text/css" >
         <script src="{% static 'jquery.js' %}"></script>
         <script src="{% static 'jquery-ui.js' %}"></script>
-        <script src="{% static 'tabs.js' %}"></script>
+        <script src="{% static 'main.js' %}"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
     </head>
     <body class="wide">
@@ -28,10 +28,10 @@
                 </div>
             </div>
         </header>
-      <button class="tablink" id="openPage('News', this, 'green')">Dashboard</button>
-      <button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">Sales</button>
-      <button class="tablink" onclick="openPage('Contact', this, 'blue')">ToDo List</button>
-      <button class="tablink" onclick="openPage('About', this, 'orange')">Calender</button>
+      <button class="tablink" id="openPage('Dash', this)">Dashboard</button>
+      <button class="tablink" onclick="openPage('Sales', this)" id="defaultOpen">Sales</button>
+      <button class="tablink" onclick="openPage('ToDo', this)">ToDo List</button>
+      <button class="tablink" onclick="openPage('Cal', this)">Calender</button>
 
       </div>
     </body>
