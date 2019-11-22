@@ -1,3 +1,4 @@
+{% csrf_token %}
 <!DOCTYPE html>
 <html >
 <head>
@@ -42,7 +43,7 @@
             {% for todo in todos %} <!-- django template lang - for loop -->
                 <li class="taskItem">
                     <!--<input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}" value="{{ todo.id }}">-->
-                    <label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>
+                    <!--<label for="{{ todo.id }}"><span class="complete-">{{ todo.title }}</span></label>-->
                     <!--<span class="category-{{ todo.category }}">{{ todo.category }}</span>-->
                     <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.created }} - {{ todo.due_date }}</strong>
                 </li>

@@ -5,6 +5,7 @@ from .models import OnlineShopperTable, ToDoList
 from django.db.models import Count
 from django.shortcuts import render,redirect
 from rest_framework import viewsets
+from django.contrib.auth.forms import UserCreationForm
 
 
 def Home(request):
@@ -36,3 +37,8 @@ def index(request):
                 todo.delete()
     return render(request, "ToDo.html", {"todos": todos})
 
+def register(request):
+    form = UserCreationForm
+    return render(request = request,
+                  template_name = "registration/login.html",
+                  context={"form":form})
