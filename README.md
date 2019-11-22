@@ -7,3 +7,8 @@ In practice, this means that employees in different divisions—for example, acc
 for their specific needs.
 Other common ERP features include a portal or dashboard to enable employees to quickly understand the business' performance on key metrics
 
+It consist the following informations
+1. User Management
+2. To Do App
+3. Statistics
+4. Dashboard
