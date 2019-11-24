@@ -40,9 +40,20 @@ class ToDoList(models.Model):
     created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
     due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
 
-
     class Meta:
         ordering = ["-created"]
 
     def __str__(self):
         return self.title
+
+
+class Users(models.Model):
+    FirstName = models.CharField(max_length=100)
+    LastName = models.CharField(max_length=100)
+    Email = models.CharField(max_length=200, blank=True)
+    password = models.CharField(max_length=100)
+    DateJoined = models.DateTimeField()
+
+    def __str__(self):
+        return self.name
+
