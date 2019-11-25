@@ -34,6 +34,16 @@
         </header>
       </div>
     <div>
+
+<div>
+      <button class="tablink" id="openPage('Dash', this)">Dashboard</button>
+      <button class="tablink" onclick="openPage('Sales', this)" id="defaultOpen">Sales</button>
+      <!--<button class="tablink" onclick="openPage('ToDo', this)">ToDo List</button>-->
+      <a class="tablink" href="/ToDo">To Do List</a>
+      <button class="tablink" onclick="openPage('Cal', this)">Calender</button>
+
+
+</div>
         {% block content %}
         {% endblock %}
     </div>

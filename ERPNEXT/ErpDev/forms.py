@@ -17,3 +17,9 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
 
+class UserLoginForm(forms.Form):
+    username = forms.CharField(max_length=30)
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def clean(self,*args,**kwargs):
+        username = self.cleaned_data.get('username')

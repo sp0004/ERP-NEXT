@@ -1,14 +1,14 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from .forms import SignUpForm
+from .forms import SignUpForm, UserLoginForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .models import ListTodo, Category
+from django.views.generic import TemplateView
 
 def Login_view(request):
-    print(request.POST)
+    print(UserLoginForm(request.POST))
     if (request.method == 'POST' and ('username' in request.POST and 'password' in request.POST)):
         print('hello-1')
         username = request.POST['username']
@@ -50,6 +50,7 @@ def home_view(request):
     return render(request, 'home.html')
 
 def todo_view(request):
+
     todos = ListTodo.objects.all()  # quering all todos with the object manager
     categories = Category.objects.all()  # getting all categories with object manager
     if request.method == "POST":  # checking if the request method is a POST
@@ -60,7 +61,7 @@ def todo_view(request):
             content = title + " -- " + date + " " + category  # content
             Todo = ListTodo(title=title, content=content, due_date=date, category=Category.objects.get(name=category))
             Todo.save()  # saving the todo
-            return redirect("/")  # reloading the page
+            return redirect("/ToDo.html")
         if "taskDelete" in request.POST:  # checking if there is a request to delete a todo
             checkedlist = request.POST["checkedbox"]  # checked todos to be deleted
             for todo_id in checkedlist:
