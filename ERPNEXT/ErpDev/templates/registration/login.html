@@ -6,12 +6,12 @@
     <h1>ERP APPLICATION</h1>
     <h2>Login</h2>
     <div>
-    <form method="POST" >
+    <form action="" method="POST" >
 
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="text" id="username">Username</input>
-        <input type="password" id="password">password</input>
+<!--        <input type="text" class="form-control" id="username">Username</input>-->
+<!--        <input type="password" class="form-control" id="password">password</input>-->
         <button type="submit">Login</button>
     </form>
         <p>Don't have an account? Create one <a href="/signup">here</a></p>

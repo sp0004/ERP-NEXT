@@ -6,9 +6,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .models import ListTodo, Category
 from django.views.generic import TemplateView
-
+from django.contrib.auth.decorators import login_required
+@login_required()
 def Login_view(request):
-    print(UserLoginForm(request.POST))
+    u = UserLoginForm(request.POST)
+    print(u.is_valid())
     if (request.method == 'POST' and ('username' in request.POST and 'password' in request.POST)):
         print('hello-1')
         username = request.POST['username']
@@ -25,6 +27,7 @@ def Login_view(request):
     else:
         print('hello-4')
         form = AuthenticationForm()
+        print(form)
         #return render(request, 'user / login.html', {'form': form, 'title': 'log in'})
         return render(request, 'registration/Login.html')
 
@@ -69,5 +72,8 @@ def todo_view(request):
                 todo.delete()  # deleting todo
     return render(request, "ToDo.html", {"todos": todos, "categories": categories})
 
+
+def Dashboard_view(request):
+    return render(request, "Dashboard.html")
 
 

@@ -12,6 +12,7 @@
         <script src="{% static 'jquery-ui.js' %}"></script>
         <script src="{% static 'main.js' %}"></script>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+
     </head>
     <body class="wide">
       <div>
@@ -30,22 +31,15 @@
                             <p> all in one app to manage all your stuff </p>
                      </div>
                 </div>
+
             </div>
         </header>
       </div>
-    <div>
-
-<div>
-      <button class="tablink" id="openPage('Dash', this)">Dashboard</button>
-      <button class="tablink" onclick="openPage('Sales', this)" id="defaultOpen">Sales</button>
-      <!--<button class="tablink" onclick="openPage('ToDo', this)">ToDo List</button>-->
-      <a class="tablink" href="/ToDo">To Do List</a>
-      <button class="tablink" onclick="openPage('Cal', this)">Calender</button>
 
 
-</div>
+
         {% block content %}
         {% endblock %}
-    </div>
+    <
     </body>
 </html>
