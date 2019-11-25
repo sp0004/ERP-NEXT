@@ -3,9 +3,11 @@
 <html lang="en-US">
     <head>
         <meta charset="UTF-8">
-        <title>Home - ERP NEXT APPlICATION</title>
+        <title>Home - ERP NEXT APPLICATION</title>
         <link rel="stylesheet" id="ample-style-css" href="{% static 'style.css' %}" type="text/css" >
         <link rel="stylesheet" id="ample-style-css-1" href="{% static 'jquery-ui.css' %}" type="text/css" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="{% static 'jquery.js' %}"></script>
         <script src="{% static 'jquery-ui.js' %}"></script>
         <script src="{% static 'main.js' %}"></script>
@@ -17,7 +19,7 @@
             <div class="header">
                 <div class="main-head-wrap inner-wrap clearfix">
                     <div id="header-logo-image">
-                        <a href="/">
+                        <a href="">
                                 <img src="{% static 'images/Erp-logo.png' %}" width="50" height="42" alt="Home- ERP Application">
                         </a>
                     </div>
@@ -30,11 +32,10 @@
                 </div>
             </div>
         </header>
-      <button class="tablink" id="openPage('Dash', this)">Dashboard</button>
-      <button class="tablink" onclick="openPage('Sales', this)" id="defaultOpen">Sales</button>
-      <button class="tablink" onclick="openPage('ToDo', this)">ToDo List</button>
-      <button class="tablink" onclick="openPage('Cal', this)">Calender</button>
-
       </div>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
     </body>
 </html>

@@ -6,6 +6,33 @@ from django.forms import forms
 from django.utils import timezone
 from .validation import validate_range
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
+
+
+class ListTodo(models.Model):
+    title = models.CharField(max_length=250)  # a varchar
+    content = models.TextField(blank=True)  # a text field
+    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # a date
+    due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # a date
+    category = models.ForeignKey(Category,default="general",on_delete=models.PROTECT)  # a foreignkey
+
+    class Meta:
+        ordering = ["-created"]  # ordering by the created field
+
+    def __str__(self):
+        return self.title  # name to be shown when called
 
 
 # Creating the necessary columns for inserting the database files
@@ -34,26 +61,20 @@ class OnlineShopperTable(models.Model):
     Revenue = models.CharField(choices=Bool_Values, max_length=50)
 
 
-class ToDoList(models.Model):
-    title = models.CharField(max_length=250)
-    content = models.TextField(blank=True)
-    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
-    due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
 
-    class Meta:
-        ordering = ["-created"]
-
-    def __str__(self):
-        return self.title
-
-
-class Users(models.Model):
-    FirstName = models.CharField(max_length=100)
-    LastName = models.CharField(max_length=100)
-    Email = models.CharField(max_length=200, blank=True)
-    password = models.CharField(max_length=100)
-    DateJoined = models.DateTimeField()
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    email = models.EmailField(max_length=150)
+    bio = models.TextField()
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
+
+@receiver(post_save, sender=User)
+def update_profile_signal(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
