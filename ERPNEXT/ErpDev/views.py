@@ -7,12 +7,13 @@ from django.contrib import messages
 from .models import ListTodo, Category
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
+
 @login_required()
 def Login_view(request):
     u = UserLoginForm(request.POST)
     print(u.is_valid())
     if (request.method == 'POST' and ('username' in request.POST and 'password' in request.POST)):
-        print('hello-1')
+
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -22,10 +23,10 @@ def Login_view(request):
             messages.success(request, f' welcome {username} !!')
             return redirect('index')
         else:
-            print('hello-3')
+
             messages.info(request, f'account done not exit plz sign in')
     else:
-        print('hello-4')
+
         form = AuthenticationForm()
         print(form)
         #return render(request, 'user / login.html', {'form': form, 'title': 'log in'})
