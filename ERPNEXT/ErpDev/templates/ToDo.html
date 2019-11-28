@@ -13,25 +13,33 @@
 
             <form action="" method="post">
             {% csrf_token %} <!-- csrf token for basic security -->
+                <div>
+                    <label>Description</label>
+                </div>
                 <div class="inputContainer">
                     <label for="description">Description</label>
                     <input type="text" id="description" class="taskName" placeholder="What do you need to do?" name="description" required>
 
                 </div>
-                <div class="inputContainer half last">
-                    <i class="fa fa-caret-down selectArrow"></i>
+                <div class="inputContainer half last" style = "width: 100%">
+                    <!--<i class="fa fa-caret-down selectArrow"></i>-->
                     <option class="disabled" value="">Choose a category</option>
-                    <select id="category" class="taskCategory" name="category_select">
-                    <label for="category">Category</label>
+                    <div>
+                    <select id="category" class="taskCategory" name="category_select" style="width:500px">
+
+                        <label for="category">Category</label>
                     {% for category in categories %}
                         <option class="" value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
                     {% endfor %}
                     </select>
-
+                    </div>
                 </div>
-                <div class="inputContainer half last right">
+                <div>
+                    <label>Due Date</label>
+                </div>
+                <div class="inputContainer half last right" style="width: 100%">
                     <label for="dueDate">Due Date</label>
-                    <input type="date" id="dueDate" class="taskDate" name="date">
+                    <input type="date" id="dueDate" class="taskDate" name="date" style="100%">
 
                 </div>
                 <div class="row">

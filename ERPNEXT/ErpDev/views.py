@@ -77,9 +77,8 @@ def todo_view(request):
 
 @login_required(redirect_field_name='')
 def Dashboard_view(request):
-    username,user_id =  Username_name(request)
-    print(username)
-    return render(request, "Dashboard.html")
+    todos = ListTodo.objects.filter(username=request.user)
+    return render(request, "Dashboard.html", {"todos": todos})
 
 
 def Username_name(request):
