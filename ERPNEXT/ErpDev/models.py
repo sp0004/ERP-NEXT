@@ -4,6 +4,7 @@ from django.core import exceptions
 from django.db import models
 from django.forms import forms
 from django.utils import timezone
+from django.conf import settings
 from .validation import validate_range
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
@@ -27,7 +28,7 @@ class ListTodo(models.Model):
     created = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # a date
     due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))  # a date
     category = models.ForeignKey(Category,default="general",on_delete=models.PROTECT)  # a foreignkey
-
+    username = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=5)
     class Meta:
         ordering = ["-created"]  # ordering by the created field
 

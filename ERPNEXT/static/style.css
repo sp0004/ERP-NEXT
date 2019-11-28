@@ -2261,10 +2261,8 @@ h1 {
     border-left: 1px solid #efefef;
 }
 input[type="date"], input[type="text"], select {
-    height: 100%;
-    width: 100%;
-    padding: 0 20px;
-    position: absolute;
+    height:auto;
+    position: relative;
     top: 0;
     vertical-align: middle;
     display: inline-block;

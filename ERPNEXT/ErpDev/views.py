@@ -7,6 +7,8 @@ from django.contrib import messages
 from .models import ListTodo, Category
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
 
 @login_required()
 def Login_view(request):
@@ -18,7 +20,7 @@ def Login_view(request):
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            print('hello-2')
+
             form = login(request, user)
             messages.success(request, f' welcome {username} !!')
             return redirect('index')
@@ -55,7 +57,7 @@ def home_view(request):
 
 def todo_view(request):
 
-    todos = ListTodo.objects.all()  # quering all todos with the object manager
+    todos = ListTodo.objects.filter(username = request.user)  # quering all todos with the object manager
     categories = Category.objects.all()  # getting all categories with object manager
     if request.method == "POST":  # checking if the request method is a POST
         if "taskAdd" in request.POST:  # checking if there is a request to add a todo
@@ -63,9 +65,9 @@ def todo_view(request):
             date = str(request.POST["date"])  # date
             category = request.POST["category_select"]  # category
             content = title + " -- " + date + " " + category  # content
-            Todo = ListTodo(title=title, content=content, due_date=date, category=Category.objects.get(name=category))
+            Todo = ListTodo(title=title, content=content, due_date=date, category=Category.objects.get(name=category),username = request.user)
             Todo.save()  # saving the todo
-            return redirect("/ToDo.html")
+            return render(request, "ToDo.html", {"todos": todos, "categories": categories})
         if "taskDelete" in request.POST:  # checking if there is a request to delete a todo
             checkedlist = request.POST["checkedbox"]  # checked todos to be deleted
             for todo_id in checkedlist:
@@ -73,8 +75,17 @@ def todo_view(request):
                 todo.delete()  # deleting todo
     return render(request, "ToDo.html", {"todos": todos, "categories": categories})
 
-
+@login_required(redirect_field_name='')
 def Dashboard_view(request):
+    username,user_id =  Username_name(request)
+    print(username)
     return render(request, "Dashboard.html")
 
 
+def Username_name(request):
+
+    username = None
+    if request.user.is_authenticated:
+        username = request.username
+        user_id = request.id
+    return (username,user_id)
